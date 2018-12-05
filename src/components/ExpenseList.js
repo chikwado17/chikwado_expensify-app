@@ -14,13 +14,9 @@
                         return <ExpenseListItem key={expense.id} {...expense} />
                     })
                 )
-            };
-
-
-
-
+            }
          </div>
-      );
+      )
  }
 
 

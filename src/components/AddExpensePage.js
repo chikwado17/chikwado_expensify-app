@@ -11,9 +11,9 @@ const AddExpensePage = (props) => {
            {/* Passing down onSubmit as a props down to ExpenseForm */}
            <ExpenseForm 
                 onSubmit={(expense) => {
-                    props.dispatch(addExpense(expense));
+                    props.dispatch(addExpense(expense))
                     //redirecting Url to HomePage
-                    props.history.push('/');
+                    props.history.push('/')
                 }}
             />
         </div>

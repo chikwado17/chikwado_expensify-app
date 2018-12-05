@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 import { setTextFilter } from '../actions/filters';
 import { sortByAmount } from '../actions/filters';
