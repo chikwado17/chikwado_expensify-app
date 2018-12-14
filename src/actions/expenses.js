@@ -1,19 +1,52 @@
-import uuid from 'uuid';
-
+import database from '../firebase/firebase';
 
 
 //creating action generator for addExpense
                                 //creating default object for expenses then pass it to expenses object                        
-export const addExpense = ({description = '',note = '', amount = 0, createdAt = 0} = {}) => ({
+export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
-    expense:{
-        id:uuid(),
-        description,
-        note,
-        amount,
-        createdAt
-    }
+    expense
 });
+
+//action dispatch of firebasre to redux 
+export const startAddExpense = (expenseData = {}) => {
+   
+    return (dispatch) => {
+
+        const {
+            description = '',
+            note = '',
+            amount = 0,
+            createdAt = 0
+        } = expenseData;
+
+
+        database.ref('expenses').push({
+            description,
+            note,
+            amount,
+            createdAt
+
+        }).then((ref)=>{
+            //dispatching the function generator for database
+            dispatch(addExpense({
+                id:ref.key,   
+                description,
+                note,
+                amount,
+                createdAt
+            }));
+        });
+    };
+};
+
+
+
+
+
+
+
+
 
 //creating action generator for removeExpense
 export const removeExpense = ({id} = {}) => ({

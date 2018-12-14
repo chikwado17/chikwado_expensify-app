@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ExpenseForm from './ExpenseForm';
 import  { connect }  from 'react-redux';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
 
 const AddExpensePage = (props) => {
@@ -11,7 +11,7 @@ const AddExpensePage = (props) => {
            {/* Passing down onSubmit as a props down to ExpenseForm */}
            <ExpenseForm 
                 onSubmit={(expense) => {
-                    props.dispatch(addExpense(expense))
+                    props.dispatch(startAddExpense(expense))
                     //redirecting Url to HomePage
                     props.history.push('/')
                 }}
