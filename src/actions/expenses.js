@@ -68,6 +68,21 @@ export const editExpense = (id,updates) => ({
 //end of expenses reducer
 
 
+//updating data from database with function generator
+export const startEditExpense = (id,updates) => {
+
+   return (dispatch) => {
+
+        return database.ref(`expenses/${id}`).update(updates).then(() => {
+            dispatch(editExpense(id,updates));
+    });
+   }
+}
+
+
+
+
+
 
 //setup for firebase to fetch save data from database
 
