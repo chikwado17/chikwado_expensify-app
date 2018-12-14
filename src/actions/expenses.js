@@ -21,13 +21,7 @@ export const startAddExpense = (expenseData = {}) => {
         } = expenseData;
 
 
-        database.ref('expenses').push({
-            description,
-            note,
-            amount,
-            createdAt
-
-        }).then((ref)=>{
+        database.ref('expenses').push({ description,note,amount,createdAt }).then((ref)=>{
             //dispatching the function generator for database
             dispatch(addExpense({
                 id:ref.key,   
@@ -39,12 +33,6 @@ export const startAddExpense = (expenseData = {}) => {
         });
     };
 };
-
-
-
-
-
-
 
 
 
@@ -61,3 +49,32 @@ export const editExpense = (id,updates) => ({
     updates
 });
 //end of expenses reducer
+
+
+
+//setup for firebase to fetch save data from database
+
+//set_Expenses action generator
+export const setExpenses = (expenses) => ({
+    type:'SET_EXPENSES',
+    expenses
+});
+
+//dispatching function for setExpenses for firebase database
+export const startSetExpenses = () => {
+    return (dispatch) => {
+       return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+
+            snapshot.forEach((childSnapshot) => {
+                    expenses.push({
+                        id:childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+            });
+
+            dispatch(setExpenses(expenses));
+        });
+    }
+}
+
