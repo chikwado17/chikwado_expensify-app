@@ -42,6 +42,23 @@ export const removeExpense = ({id} = {}) => ({
     id
 });
 
+
+//removing all data from firebase using function generator to remove expense
+
+export const startRemoveExpense = ({id} = {}) => {
+    return (dispatch) => {
+
+            //removing data from database using expenses ID
+      return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
+       });
+    }
+}
+
+
+
+
+
 //action generator for editExpense
 export const editExpense = (id,updates) => ({
     type:'EDIT_EXPENSE',
