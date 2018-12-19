@@ -8,7 +8,6 @@ exports[`should render Header Component correctly 1`] = `
   <NavLink
     activeClassName="is-active"
     aria-current="page"
-    exact={true}
     to="/dashboard"
   >
     Dashboard
@@ -17,18 +16,9 @@ exports[`should render Header Component correctly 1`] = `
   <NavLink
     activeClassName="is-active"
     aria-current="page"
-    exact={true}
     to="/create"
   >
     Create Expense
-  </NavLink>
-  <br />
-  <NavLink
-    activeClassName="is-active"
-    aria-current="page"
-    to="/help"
-  >
-    Help Page
   </NavLink>
   <br />
   <button
