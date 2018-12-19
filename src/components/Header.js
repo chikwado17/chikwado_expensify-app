@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 
-
-
 export const Header = (props) => {
     return ( 
        <div>
@@ -16,8 +14,6 @@ export const Header = (props) => {
        </div>
      );
 }
-
-
 
 const mapDispatchToProps = (dispatch) => ({
 
