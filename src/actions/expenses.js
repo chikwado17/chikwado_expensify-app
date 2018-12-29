@@ -11,7 +11,9 @@ export const addExpense = (expense) => ({
 //action dispatch of firebasre to redux 
 export const startAddExpense = (expenseData = {}) => {
    
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        //setting data for each logged in user differently
+        const uid = getState().auth.uid;
 
         const {
             description = '',
@@ -21,7 +23,8 @@ export const startAddExpense = (expenseData = {}) => {
         } = expenseData;
 
 
-        database.ref('expenses').push({ description,note,amount,createdAt }).then((ref)=>{
+        //setting data for each logged in user differently
+        database.ref(`users/${uid}/expenses`).push({ description,note,amount,createdAt }).then((ref)=>{
             //dispatching the function generator for database
             dispatch(addExpense({
                 id:ref.key,   
@@ -37,23 +40,22 @@ export const startAddExpense = (expenseData = {}) => {
 
 
 //creating action generator for removeExpense
-export const removeExpense = ({id} = {}) => ({
+export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
-});
-
+  });
 
 //removing all data from firebase using function generator to remove expense
 
-export const startRemoveExpense = ({id} = {}) => {
-    return (dispatch) => {
-
-            //removing data from database using expenses ID
-      return database.ref(`expenses/${id}`).remove().then(() => {
-            dispatch(removeExpense({ id }));
-       });
-    }
-}
+  
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
+        dispatch(removeExpense({ id }));
+        });
+    };
+};
 
 
 
@@ -71,9 +73,9 @@ export const editExpense = (id,updates) => ({
 //updating data from database with function generator
 export const startEditExpense = (id,updates) => {
 
-   return (dispatch) => {
-
-        return database.ref(`expenses/${id}`).update(updates).then(() => {
+   return (dispatch, getState) => {
+    const uid = getState().auth.uid
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             dispatch(editExpense(id,updates));
     });
    }
@@ -92,10 +94,18 @@ export const setExpenses = (expenses) => ({
     expenses
 });
 
-//dispatching function for setExpenses for firebase database
+
+//dispatching function for setExpenses for firebase database, that will fetch users data from 
+//firebase, save it, and can not clean even when refreshed-> and this is to be dispatched on app.js
+//m reminder
+                        
 export const startSetExpenses = () => {
-    return (dispatch) => {
-       return database.ref('expenses').once('value').then((snapshot) => {
+                         //setting data for each logged in user differently
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid
+                                     //setting data for each logged in user differently
+       return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
+
             const expenses = [];
 
             snapshot.forEach((childSnapshot) => {
