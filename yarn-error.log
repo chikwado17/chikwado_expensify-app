@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/local/bin/yarn add --dev dotenv@4.0.0
+  /usr/bin/node /usr/local/bin/yarn add babel-polyfill@6.26.0
 
 PATH: 
   /home/emmanuel/flutter/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/emmanuel/bin:/usr/lib/jvm/jdk1.8.0_181/bin:/usr/lib/jvm/jdk1.8.0_181/bin
@@ -47,6 +47,7 @@ npm manifest:
       "express": "4.15.4",
       "extract-text-webpack-plugin": "3.0.0",
       "firebase": "4.2.0",
+      "history": "4.7.2",
       "moment": "2.18.1",
       "node-sass": "4.5.3",
       "normalize.css": "7.0.0",
@@ -69,6 +70,7 @@ npm manifest:
     },
     "devDependencies": {
       "cross-env": "5.0.5",
+      "dotenv": "4.0.0",
       "enzyme": "3.0.0",
       "enzyme-adapter-react-16": "1.0.0",
       "enzyme-to-json": "3.0.1",
@@ -2390,6 +2392,11 @@ Lockfile:
       dom-serializer "0"
       domelementtype "1"
   
+  dotenv@4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+    integrity sha1-hk7xN5rO1Vzm+V3r7NzhefegzR0=
+  
   ecc-jsbn@~0.1.1:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -3409,7 +3416,7 @@ Lockfile:
       inherits "^2.0.3"
       minimalistic-assert "^1.0.1"
   
-  history@^4.7.2:
+  history@4.7.2, history@^4.7.2:
     version "4.7.2"
     resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
     integrity sha512-1zkBRWW6XweO0NBcjiphtVJVsIQ+SXF29z9DVkceeaSLVMFXHool+fdCZD4spDCfZJCILPILc3bm7Bc+HRi0nA==

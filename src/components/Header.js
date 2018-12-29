@@ -6,12 +6,16 @@ import { startLogout } from '../actions/auth';
 
 export const Header = (props) => {
     return ( 
-       <div>
-            <Link to="/dashboard">
-                <h1>Expensify</h1>
-            </Link>
-           
-            <button onClick={props.startLogout}>Logout</button>
+       <div className="header">
+              <div className="content-container">
+                <div className="header-content">
+                    <Link className="header__title" to="/dashboard">
+                          <h1>Expensify</h1>
+                      </Link>
+          
+                    <button className="button--link" onClick={props.startLogout}>Logout</button>
+                </div>
+            </div>
        </div>
      );
 }

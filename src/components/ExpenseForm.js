@@ -74,22 +74,23 @@ class ExpenseForm extends Component {
     render() { 
         return ( 
 
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
+            <form className="form" onSubmit={this.onSubmit}>
+                 {this.state.error && <p className="form__error">{this.state.error}</p>}
                     <input type="text"
                         placeholder="Description"
+                        className="text-input"
                         autoFocus 
                             value={this.state.description}
                             onChange={this.onDescriptionChange}
                         />
-                        <br/>
+                        
                         
                     <input type="number"
                      placeholder="Amount" 
+                     className="text-input"
                      value={this.state.amount}
                      onChange={this.onAmountChange}
-                     /><br/>
+                     />
 
                     <SingleDatePicker
                             date={this.state.createdAt}
@@ -101,18 +102,19 @@ class ExpenseForm extends Component {
                         />
 
                     <textarea
+                    className="textarea"
                         cols="30"
                         rows="10"
                         placeholder="Add a note of your Expense"
                         value={this.state.note}
                         onChange={this.onAddNote}
                         >
-                    </textarea><br/>
-
-
-                    <input type="submit" value="Add Expense"/>
-                </form>
-            </div>
+                    </textarea>
+                <div>
+                    <input type="submit" value="Save Expense" className="button"/>
+                </div>
+            </form>
+           
          );
     }
 }
