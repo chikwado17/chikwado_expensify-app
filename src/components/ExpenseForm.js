@@ -35,9 +35,8 @@ class ExpenseForm extends Component {
         onAmountChange = (e) => {
             const amount = e.target.value;
 
-        if(!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)){
-
-                this.setState(() => ({ amount }));
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
+            this.setState(() => ({ amount }));
             }
         };
         onDateChange = (createdAt) => {
@@ -90,6 +89,7 @@ class ExpenseForm extends Component {
                      className="text-input"
                      value={this.state.amount}
                      onChange={this.onAmountChange}
+                     min="1"
                      />
 
                     <SingleDatePicker
