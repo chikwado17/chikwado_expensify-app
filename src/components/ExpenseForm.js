@@ -24,7 +24,11 @@ class ExpenseForm extends Component {
         onDescriptionChange = (e) => {
             const description = e.target.value;
 
-            this.setState(() => ({ description }));
+            if(description != null){
+
+                this.setState(() => ({ description }));
+            }
+           
         }
 
         onAddNote = (e) => {
@@ -36,7 +40,8 @@ class ExpenseForm extends Component {
             const amount = e.target.value;
 
         if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            this.setState(() => ({ amount }));
+
+                this.setState(() => ({ amount }));
             }
         };
         onDateChange = (createdAt) => {
